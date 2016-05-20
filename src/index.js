@@ -38,7 +38,6 @@ class ScrollingMenu extends Component {
       window.requestAnimationFrame(
         () => {
           let x = (widthInFront + self.props.itemSpacing) - ( ( screenWidth / 2 ) - ( currentItemWidth / 2 ) )
-          console.log(x + ' ' + (contentWidth - (currentItemWidth - self.props.itemSpacing)))
           if (x < 0) {
             x = 0
           } else if (x > (contentWidth - screenWidth)) {
