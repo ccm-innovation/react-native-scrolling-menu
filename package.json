@@ -30,10 +30,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thathirsch/react-native-scrolling-navbar.git"
+    "url": "git+https://github.com/ccm-innovation/react-native-scrolling-menu.git"
   },
   "bugs": {
-    "url": "https://github.com/thathirsch/react-native-scrolling-navbar/issues"
+    "url": "https://github.com/ccm-innovation/react-native-scrolling-menu/issues"
   },
-  "homepage": "https://github.com/thathirsch/react-native-scrolling-navbar#readme"
+  "homepage": "https://github.com/ccm-innovation/react-native-scrolling-menu#readme"
 }
