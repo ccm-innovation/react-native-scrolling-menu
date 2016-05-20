@@ -60,6 +60,8 @@ var ScrollingMenu = function (_Component) {
           self.setState({ selected: itemNum });
         });
       }, 500);
+
+      this.props.callback(itemNum);
     }
   }, {
     key: 'render',
