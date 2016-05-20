@@ -60,7 +60,7 @@ var ScrollingMenu = function (_Component) {
         });
       }, 500);
 
-      this.props.callback(itemNum);
+      this.props.callback(itemNum - 1);
     }
   }, {
     key: 'render',

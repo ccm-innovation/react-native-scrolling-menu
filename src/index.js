@@ -49,7 +49,7 @@ class ScrollingMenu extends Component {
       )
     },500)
 
-    this.props.callback(itemNum)
+    this.props.callback(itemNum - 1)
   }
 
   render() {
