@@ -27,7 +27,7 @@ var ScrollingMenu = function (_Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ScrollingMenu).call(this, props));
 
     _this.state = {
-      selected: 1,
+      selected: 0,
       widths: new Array(props.items.length),
       contentWidth: 0
     };
@@ -38,13 +38,13 @@ var ScrollingMenu = function (_Component) {
     key: 'scroll',
     value: function scroll(itemNum) {
       var widthInFront = 0,
-          currentItemWidth = this.state.widths[itemNum - 1],
+          currentItemWidth = this.state.widths[itemNum],
           screenWidth = Dimensions.get('window').width,
           contentWidth = this.state.contentWidth,
           self = this;
 
-      for (var i = 1; i <= itemNum; i++) {
-        if (i < itemNum) widthInFront += this.state.widths[i - 1] + this.props.itemSpacing;
+      for (var i = 0; i <= itemNum; i++) {
+        if (i < itemNum) widthInFront += this.state.widths[i] + this.props.itemSpacing;
       }
 
       setTimeout(function () {
@@ -60,7 +60,7 @@ var ScrollingMenu = function (_Component) {
         });
       }, 500);
 
-      this.props.callback(itemNum - 1);
+      this.props.callback(itemNum);
     }
   }, {
     key: 'render',
@@ -99,21 +99,21 @@ var ScrollingMenu = function (_Component) {
           },
           React.createElement(
             Text,
-            { style: [i == 1 ? styles.scrollBarFirstItem : null, styles.scrollBarItem, _this2.state.selected == i ? styles.scrollBarSelectedItem : null],
+            { style: [i === 0 ? styles.scrollBarFirstItem : null, styles.scrollBarItem, _this2.state.selected == i ? styles.scrollBarSelectedItem : null],
               onLayout: function onLayout(object) {
                 var width = object.nativeEvent.layout.width;
 
                 var newState = _this2.state;
-                newState.widths[i - 1] = width;
+                newState.widths[i] = width;
                 _this2.setState(newState);
               }
             },
-            _this2.props.items[i - 1]
+            _this2.props.items[i]
           )
         ));
       };
 
-      for (var i = 1; i <= this.props.items.length; i++) {
+      for (var i = 0; i <= this.props.items.length; i++) {
         _loop(i);
       }
 

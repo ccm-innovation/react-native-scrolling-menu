@@ -17,7 +17,7 @@ class ScrollingMenu extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selected: 1,
+      selected: 0,
       widths: new Array(props.items.length),
       contentWidth: 0
     }
@@ -25,13 +25,13 @@ class ScrollingMenu extends Component {
 
   scroll(itemNum) {
     let widthInFront = 0,
-        currentItemWidth = this.state.widths[itemNum - 1],
+        currentItemWidth = this.state.widths[itemNum],
         screenWidth = Dimensions.get('window').width,
         contentWidth = this.state.contentWidth,
         self = this
 
-    for (let i = 1; i <= itemNum; i++) {
-      if (i < itemNum) widthInFront += this.state.widths[i - 1] + this.props.itemSpacing
+    for (let i = 0; i <= itemNum; i++) {
+      if (i < itemNum) widthInFront += this.state.widths[i] + this.props.itemSpacing
     }
 
     setTimeout(function(){
@@ -49,7 +49,7 @@ class ScrollingMenu extends Component {
       )
     },500)
 
-    this.props.callback(itemNum - 1)
+    this.props.callback(itemNum)
   }
 
   render() {
@@ -73,22 +73,22 @@ class ScrollingMenu extends Component {
     })
 
     let items = []
-    for (let i = 1; i <= this.props.items.length; i++) {
+    for (let i = 0; i <= this.props.items.length; i++) {
       items.push(
         <TouchableOpacity
           key={i}
           style={styles.button}
           onPress={() => { this.scroll(i) }}
         >
-          <Text style={[i == 1 ? styles.scrollBarFirstItem : null, styles.scrollBarItem, this.state.selected == i ? styles.scrollBarSelectedItem : null]}
+          <Text style={[i === 0 ? styles.scrollBarFirstItem : null, styles.scrollBarItem, this.state.selected == i ? styles.scrollBarSelectedItem : null]}
                 onLayout={(object) => {
                   let {width} = object.nativeEvent.layout
                   let newState = this.state
-                  newState.widths[i - 1] = width
+                  newState.widths[i] = width
                   this.setState(newState)
                 }}
           >
-            {this.props.items[i-1]}
+            {this.props.items[i]}
           </Text>
         </TouchableOpacity>
       )
