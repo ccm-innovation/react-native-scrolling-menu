@@ -1,16 +1,17 @@
 'use strict'
 
-let React = require('react-native')
+import React, {
+  Component
+} from 'react';
 
-let {
-  Component,
+import ReactNative, {
   Dimensions,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View
-} = React
+} from 'react-native';
 
 class ScrollingMenu extends Component {
 
