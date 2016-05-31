@@ -55,8 +55,10 @@ var ScrollingMenu = function (_Component) {
           } else if (x > contentWidth - screenWidth) {
             x = contentWidth - screenWidth;
           }
-          self.refs.scrollView.scrollTo({ x: x });
-          self.setState({ selected: itemNum });
+          if (self.props.noSetState.indexOf(self.props.items[itemNum]) === -1) {
+            self.refs.scrollView.scrollTo({ x: x });
+            self.setState({ selected: itemNum });
+          }
         });
       }, 500);
 
@@ -99,7 +101,7 @@ var ScrollingMenu = function (_Component) {
           },
           _react2.default.createElement(
             _reactNative.Text,
-            { style: [i === 0 ? styles.scrollBarFirstItem : null, styles.scrollBarItem, _this2.state.selected == i ? styles.scrollBarSelectedItem : null],
+            { style: [i === 0 ? styles.scrollBarFirstItem : null, styles.scrollBarItem, _this2.state.selected === i ? styles.scrollBarSelectedItem : null],
               onLayout: function onLayout(object) {
                 var width = object.nativeEvent.layout.width;
 

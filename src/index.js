@@ -44,8 +44,10 @@ class ScrollingMenu extends Component {
           } else if (x > (contentWidth - screenWidth)) {
             x = contentWidth - screenWidth
           }
-          self.refs.scrollView.scrollTo({x})
-          self.setState({selected: itemNum})
+          if (self.props.noSetState.indexOf(self.props.items[itemNum]) === -1) {
+            self.refs.scrollView.scrollTo({x})
+            self.setState({selected: itemNum})
+          }
         }
       )
     },500)
@@ -81,7 +83,7 @@ class ScrollingMenu extends Component {
           style={styles.button}
           onPress={() => { this.scroll(i) }}
         >
-          <Text style={[i === 0 ? styles.scrollBarFirstItem : null, styles.scrollBarItem, this.state.selected == i ? styles.scrollBarSelectedItem : null]}
+          <Text style={[i === 0 ? styles.scrollBarFirstItem : null, styles.scrollBarItem, this.state.selected === i ? styles.scrollBarSelectedItem : null]}
                 onLayout={(object) => {
                   let {width} = object.nativeEvent.layout
                   let newState = this.state
