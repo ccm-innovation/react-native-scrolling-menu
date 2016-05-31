@@ -1,6 +1,6 @@
 {
   "name": "react-native-scrolling-menu",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "A horizontal scrolling menu for React Native.",
   "main": "index.js",
   "scripts": {
