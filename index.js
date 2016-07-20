@@ -1,6 +1,16 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
 
 var _react = require('react');
 
@@ -10,13 +20,27 @@ var _reactNative = require('react-native');
 
 var _reactNative2 = _interopRequireDefault(_reactNative);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && ((typeof call === 'undefined' ? 'undefined' : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === 'undefined' ? 'undefined' : _typeof(superClass)));
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
 
 var ScrollingMenu = function (_Component) {
   _inherits(ScrollingMenu, _Component);
@@ -55,7 +79,12 @@ var ScrollingMenu = function (_Component) {
           } else if (x > contentWidth - screenWidth) {
             x = contentWidth - screenWidth;
           }
-          if (self.props.noSetState.indexOf(self.props.items[itemNum]) === -1) {
+          if (self.props.noSetState) {
+            if (self.props.noSetState.indexOf(self.props.items[itemNum]) === -1) {
+              self.refs.scrollView.scrollTo({ x: x });
+              self.setState({ selected: itemNum });
+            }
+          } else {
             self.refs.scrollView.scrollTo({ x: x });
             self.setState({ selected: itemNum });
           }
@@ -90,47 +119,35 @@ var ScrollingMenu = function (_Component) {
       var items = [];
 
       var _loop = function _loop(i) {
-        items.push(_react2.default.createElement(
-          _reactNative.TouchableOpacity,
-          {
-            key: i,
-            style: styles.button,
-            onPress: function onPress() {
-              _this2.scroll(i);
-            }
-          },
-          _react2.default.createElement(
-            _reactNative.Text,
-            { style: [i === 0 ? styles.scrollBarFirstItem : null, styles.scrollBarItem, _this2.state.selected === i ? styles.scrollBarSelectedItem : null],
-              onLayout: function onLayout(object) {
-                var width = object.nativeEvent.layout.width;
+        items.push(_react2.default.createElement(_reactNative.TouchableOpacity, {
+          key: i,
+          style: styles.button,
+          onPress: function onPress() {
+            _this2.scroll(i);
+          }
+        }, _react2.default.createElement(_reactNative.Text, { style: [i === 0 ? styles.scrollBarFirstItem : null, styles.scrollBarItem, _this2.state.selected === i ? styles.scrollBarSelectedItem : null],
+          onLayout: function onLayout(object) {
+            var width = object.nativeEvent.layout.width;
 
-                var newState = _this2.state;
-                newState.widths[i] = width;
-                _this2.setState(newState);
-              }
-            },
-            _this2.props.items[i]
-          )
-        ));
+            var newState = _this2.state;
+            newState.widths[i] = width;
+            _this2.setState(newState);
+          }
+        }, _this2.props.items[i])));
       };
 
       for (var i = 0; i <= this.props.items.length; i++) {
         _loop(i);
       }
 
-      return _react2.default.createElement(
-        _reactNative.ScrollView,
-        {
-          ref: 'scrollView',
-          style: styles.scrollBar,
-          horizontal: true,
-          onContentSizeChange: function onContentSizeChange(contentWidth, contentHeight) {
-            _this2.setState({ contentWidth: contentWidth });
-          }
-        },
-        items
-      );
+      return _react2.default.createElement(_reactNative.ScrollView, {
+        ref: 'scrollView',
+        style: styles.scrollBar,
+        horizontal: true,
+        onContentSizeChange: function onContentSizeChange(contentWidth, contentHeight) {
+          _this2.setState({ contentWidth: contentWidth });
+        }
+      }, items);
     }
   }]);
 

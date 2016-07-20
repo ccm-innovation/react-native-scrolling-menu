@@ -44,7 +44,12 @@ class ScrollingMenu extends Component {
           } else if (x > (contentWidth - screenWidth)) {
             x = contentWidth - screenWidth
           }
-          if (self.props.noSetState.indexOf(self.props.items[itemNum]) === -1) {
+          if (self.props.noSetState) {
+            if (self.props.noSetState.indexOf(self.props.items[itemNum]) === -1) {
+              self.refs.scrollView.scrollTo({x})
+              self.setState({selected: itemNum})
+            }
+          } else {
             self.refs.scrollView.scrollTo({x})
             self.setState({selected: itemNum})
           }
