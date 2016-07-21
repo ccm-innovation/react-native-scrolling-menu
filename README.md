@@ -1,5 +1,6 @@
 # React Native Scrolling Menu
 > A horizontal scrolling menu for React Native.
+
 [![npm version](https://badge.fury.io/js/react-native-scrolling-menu.svg)](https://badge.fury.io/js/react-native-scrolling-menu)
 
 ![Screenshot](https://drive.google.com/uc?export=view&id=0BwAfqxmTWrImakRNWTBZZklBNmc)
