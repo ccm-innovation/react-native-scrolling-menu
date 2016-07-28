@@ -18,7 +18,7 @@ var ScrollingMenu = require('react-native-scrolling-menu');
 let items = ['Menu Item 1','Menu Item 2','Menu Item 3','Menu Item 4','Menu Item 5'];
 
 onClick(itemIndex) {
-  console.log("Selected: " + items[itemNum]);
+  console.log("Selected: " + items[itemIndex]);
 }
 
 render() {
