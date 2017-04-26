@@ -107,6 +107,7 @@ class ScrollingMenu extends Component {
         ref='scrollView'
         style={styles.scrollBar}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         onContentSizeChange={(contentWidth, contentHeight) => {
       		this.setState({contentWidth})
       	}}
