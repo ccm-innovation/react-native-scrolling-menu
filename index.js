@@ -144,6 +144,7 @@ var ScrollingMenu = function (_Component) {
         ref: 'scrollView',
         style: styles.scrollBar,
         horizontal: true,
+        showsHorizontalScrollIndicator: false,
         onContentSizeChange: function onContentSizeChange(contentWidth, contentHeight) {
           _this2.setState({ contentWidth: contentWidth });
         }
