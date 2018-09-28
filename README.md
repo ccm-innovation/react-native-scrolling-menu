@@ -33,6 +33,36 @@ render() {
   );
 }
 ```
+To programmatical trigger the ScrollingMenu, create a ref and access to it like this: 
+```JavaScript
+let items = ['Menu Item 1','Menu Item 2','Menu Item 3','Menu Item 4','Menu Item 5'];
+
+onClick(itemIndex) {
+  console.log("Selected: " + items[itemIndex]);
+}
+
+render() {
+  return (
+    <ScrollingMenu
+      items={items}
+      ref={(c) => this.scrollingMenu = c}
+      callback={this.onClick.bind(this)}
+      backgroundColor="#ffffff"
+      textColor="#cccccc"
+      selectedTextColor="#000000"
+      itemSpacing={20} />
+  );
+}
+// Scrolling to Item 5:
+this.scrollingMenu.scrollTo(5);
+
+// Select item 5
+this.scrollingMenu.select(5);
+
+// accessing state of ScrollingMenu
+this.scrollingMenu.state.selected;
+
+```
 
 ## Props
 |Key |Type |Description |
@@ -43,3 +73,4 @@ render() {
 |`textColor`|String (HEX)|The text color prior to being selected|
 |`selectedTextColor`|String (HEX)|The text color of the selected item|
 |`itemSpacing`|Number|The number of pixels between the menu items|
+
