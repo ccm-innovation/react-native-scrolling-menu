@@ -58,6 +58,10 @@ this.scrollingMenu.scrollTo(5);
 
 // Select item 5
 this.scrollingMenu.select(5);
+
+// accessing state of ScrollingMenu
+this.scrollingMenu.state.selected;
+
 ```
 
 ## Props
